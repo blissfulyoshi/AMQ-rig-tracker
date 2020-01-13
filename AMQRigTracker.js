@@ -1,13 +1,14 @@
 // ==UserScript==
 // @name         AMQRigTracker
 // @namespace    something
-// @version      0.1
+// @version      0.1.1
 // @description  Track Score Information in AMQ
 // @match        https://animemusicquiz.com/
 // @grant        none
 // ==/UserScript==
 
 var answerInformation = Array(40);
+let scriptRunning = false;
 
 function GetAnswerInformation() {
     var players = document.querySelectorAll('.qpAvatarCenterContainer');
@@ -118,7 +119,10 @@ function observeAnswerShowing() {
 
 function startAmqScript() {
     console.log("HAI");
-    observeAnswerShowing();
+    if (!scriptRunning){
+        observeAnswerShowing();
+        scriptRunning = true;
+    }
 }
 
 document.querySelector("#mpPlayButton").addEventListener('click', function() {
